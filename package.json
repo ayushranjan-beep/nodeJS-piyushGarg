@@ -1,0 +1,23 @@
+{
+  "name": "nodejs--piyush-garg",
+  "version": "1.0.0",
+  "description": "it is from youtube playlist by piyush garg",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ayushranjan-beep/nodeJS-piyushGarg.git"
+  },
+  "author": "ayush ranjan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ayushranjan-beep/nodeJS-piyushGarg/issues"
+  },
+  "homepage": "https://github.com/ayushranjan-beep/nodeJS-piyushGarg#readme",
+  "dependencies": {
+    "url": "^0.11.4"
+  }
+}

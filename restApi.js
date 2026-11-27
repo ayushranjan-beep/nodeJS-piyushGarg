@@ -31,10 +31,46 @@ app.route("/api/users/:id")
         return res.json(user);
     })
     .patch((req, res) => {
-        return res.json({ status: "pending" });
+        const id = Number(req.params.id);
+        const body = req.body;
+        const user = users.find((user) => user.id === id);
+        if (user) {
+            if (!body) {
+                return res.status(400).json({ msg: "Please enter what to update" });
+            } else if (body.first_name) {
+                user.first_name = body.first_name;
+            } else if (body.last_name) {
+                user.last_name = body.last_name;
+            } else if (body.email) {
+                user.email = body.email;
+            } else if (body.gender) {
+                user.gender = body.gender;
+            } else if (body.job_description) {
+                user.job_description = body.job_description;
+            }
+        } else {
+            return res.status(400).json({ msg: "User not found" });
+        }
+
+        fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err) => {
+            return res.status(201).json({ status: "success", id: id });
+        });
+    })
+    .put((req, res) => {
+        return res.status(201).json({ msg: "to be implemented" });
     })
     .delete((req, res) => {
-        return res.json({ status: "pending" });
+        const id = Number(req.params.id);
+        const user = users.find((user) => user.id === id);
+        if (!user) {
+            return res.status(404).json({ msg: "User not found" });
+        }
+
+        const updatedUsers = users.filter((user) => user.id !== id);
+
+        fs.writeFile("./MOCK_DATA.json", JSON.stringify(updatedUsers), (err) => {
+            return res.status(201).json({ msg: "user successfully deleted" });
+        });
     });
 
 app.post("/api/users", (req, res) => {
@@ -61,3 +97,22 @@ app.listen(PORT, () => console.log(`Server Started at PORT: ${PORT}`));
 
 
 
+
+
+
+/*
+    mongoose.Schema({
+        name: {
+            type: String,
+            required: true,
+            maxLength: 232,
+
+        }
+        userId: Object.Mixed.ObjectId ref: "users"
+    
+    })
+
+
+
+
+*/

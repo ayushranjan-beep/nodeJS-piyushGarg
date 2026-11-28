@@ -8,7 +8,6 @@ const PORT = 8000;
 // Built-in Middleware: Parses URL-encoded form data into req.body
 app.use(express.urlencoded({ extended: false }));
 
-
 // SSR
 app.get("/users", (req, res) => {
     const html = `<ul>
@@ -18,7 +17,6 @@ app.get("/users", (req, res) => {
 });
 
 // CSR
-
 app.get("/api/users", (req, res) => {
     return res.json(users);
 });
@@ -37,16 +35,12 @@ app.route("/api/users/:id")
         if (user) {
             if (!body) {
                 return res.status(400).json({ msg: "Please enter what to update" });
-            } else if (body.first_name) {
-                user.first_name = body.first_name;
-            } else if (body.last_name) {
-                user.last_name = body.last_name;
-            } else if (body.email) {
-                user.email = body.email;
-            } else if (body.gender) {
-                user.gender = body.gender;
-            } else if (body.job_description) {
-                user.job_description = body.job_description;
+            } else {
+                if (body.first_name) user.first_name = body.first_name;
+                if (body.last_name) user.last_name = body.last_name;
+                if (body.email) user.email = body.email;
+                if (body.gender) user.gender = body.gender;
+                if (body.job_description) user.job_description = body.job_description;
             }
         } else {
             return res.status(400).json({ msg: "User not found" });
@@ -92,27 +86,3 @@ app.post("/api/users", (req, res) => {
 app.listen(PORT, () => console.log(`Server Started at PORT: ${PORT}`));
 
 
-
-
-
-
-
-
-
-
-/*
-    mongoose.Schema({
-        name: {
-            type: String,
-            required: true,
-            maxLength: 232,
-
-        }
-        userId: Object.Mixed.ObjectId ref: "users"
-    
-    })
-
-
-
-
-*/

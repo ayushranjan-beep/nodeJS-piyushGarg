@@ -4,7 +4,7 @@
   "description": "it is from youtube playlist by piyush garg",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "nodemon restApi.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,6 +19,7 @@
   "homepage": "https://github.com/ayushranjan-beep/nodeJS-piyushGarg#readme",
   "dependencies": {
     "express": "^5.3.0",
+    "nodemon": "^3.1.14",
     "url": "^0.11.4"
   }
 }
